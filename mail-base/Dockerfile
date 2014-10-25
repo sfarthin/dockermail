@@ -34,3 +34,7 @@ RUN apt-get clean
 ADD ./domains /domains
 ADD ./aliases /aliases
 ADD ./passwords /passwords
+
+ADD ./server.crt /server.crt
+ADD ./server.key /server.key
+ADD ./server.pem /server.pem

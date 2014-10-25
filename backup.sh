@@ -1,0 +1,1 @@
+tar czvf backup.`date '+%F_%T'`.tar.gz /srv/mail /srv/radicale

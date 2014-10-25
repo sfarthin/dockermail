@@ -1,0 +1,6 @@
+*.crt
+*.key
+*.pem
+radicale/server.pem
+mail-base/server.pem
+radicale/collections
