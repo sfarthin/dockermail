@@ -37,6 +37,11 @@ want to receive the mail for and send mail from this domain. It consists of 4 se
 Setup
 =====
 
+0) Add SSL certificates for Dovecot and radicale
+
+in mail-base/ directory, put server.key, server.crt, and server.pem
+
+in radicale/ directory, add server.key, server.crt, and server.pem
 
 1) Add all domains you want to receive mail for to the file `mail-base/domains`, like this:
 
