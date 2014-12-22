@@ -8,6 +8,8 @@ A secure, minimal-configuration mail server in a docker container, including web
 This repository is tailored to small private servers, where you own some domain(s) and
 want to receive the mail for and send mail from this domain. It consists of 4 separate docker containers:
 
+ - **radicale**: Cardav and Caldav server. 
+
  - **dovecot**:  The SMTP and IMAP server. This container uses postfix as MTA and dovecot as IMAP server.
     All incoming mail to your own domains is accepted. For outgoing mail, only authenticated (logged in with username and password)
     clients can send messages via STARTTLS on port 587. In theory it works with all mail clients, but it was only tested with Thunderbird.
@@ -35,6 +37,11 @@ want to receive the mail for and send mail from this domain. It consists of 4 se
 Setup
 =====
 
+0) Add SSL certificates for Dovecot and radicale
+
+in mail-base/ directory, put server.key, server.crt, and server.pem
+
+in radicale/ directory, add server.key, server.crt, and server.pem
 
 1) Add all domains you want to receive mail for to the file `mail-base/domains`, like this:
 
@@ -80,6 +87,37 @@ extremely simple, dont be afraid to look inside.
    manually before invoking make, as this currently cannot be done automatically.
 
 7) Enjoy.
+
+
+### Client Setup
+
+#### cardav and caldav
+
+Carddav URL:
+
+    https://example.com:5232/username/contacts.vcf/
+
+Caldav URL:
+
+    https://example.com:5232/username/calendar.ics/
+
+
+#### IMAP
+
+##### osx
+
+![](https://raw.githubusercontent.com/sfarthin/dockermail/master/img/osx-1.png)
+![](https://raw.githubusercontent.com/sfarthin/dockermail/master/img/osx-2.png)
+![](https://raw.githubusercontent.com/sfarthin/dockermail/master/img/osx-3.png)
+
+##### iOS
+
+![](https://raw.githubusercontent.com/sfarthin/dockermail/master/img/ios-1.png)
+
+SSL port needs to be changed to 143
+
+![](https://raw.githubusercontent.com/sfarthin/dockermail/master/img/ios-2.png)
+
 
 
 Known issues / Todo / Wishlist
