@@ -1,9 +1,15 @@
 dovecot   unix  -       n       n       -       -       pipe
   flags=DRhu user=vmail:vmail argv=/usr/lib/dovecot/deliver -f ${sender} -d ${recipient}
 
+
+spamassassin unix -     n       n       -       -       pipe
+  user=spamd argv=/usr/bin/spamc -f -e 
+  /usr/sbin/sendmail -oi -f ${sender} ${recipient}
+
 # we need to be permissive with the helo restrictions since the client can only
 # authenticate after HELO has been sent
 submission      inet    n       -       n       -       -       smtpd
+ -o content_filter=spamassassin
  -o smtpd_etrn_restrictions=reject
  -o smtpd_sasl_type=dovecot
  -o smtpd_sasl_path=private/auth
